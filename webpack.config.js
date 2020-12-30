@@ -8,6 +8,7 @@ module.exports = (env, argv) => {
   const isDevMode = argv.mode === "development";
 
   return {
+    mode: argv.mode,
     entry: [
       path.resolve(__dirname, "src", "scripts/app.js"),
       path.resolve(__dirname, "src", "styles/app.scss"),
