@@ -1,3 +1,6 @@
 // Scripts start here
 
-console.log('Welcome to my App');
+import cart from "./pages/cart";
+if (document.getElementById("cart")) {
+  cart.init();
+}

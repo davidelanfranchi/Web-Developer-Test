@@ -1,0 +1,27 @@
+.TopBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  background-color: var(--white);
+  padding-top: rem(10px);
+  padding-bottom: rem(10px);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+  &__container {
+    @include container;
+    display: flex;
+    align-items: center;
+  }
+  &__left {
+    flex-grow: 1;
+  }
+  &__logo {
+    display: block;
+    width: 60px;
+    height: 19px;
+  }
+
+  &__menu {
+  }
+}

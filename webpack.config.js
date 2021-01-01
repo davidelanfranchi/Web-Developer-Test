@@ -27,10 +27,39 @@ module.exports = (env, argv) => {
         {
           test: /\.scss$/,
           use: [
-            // fallback to style-loader in development
             isDevMode ? "style-loader" : MiniCssExtractPlugin.loader,
-            "css-loader",
+            {
+              loader: "css-loader",
+              options: {
+                url: false,
+              },
+            },
             "sass-loader",
+            {
+              loader: "sass-resources-loader",
+              options: {
+                resources: path.resolve(
+                  __dirname,
+                  "src",
+                  "styles/_abstract.scss"
+                ),
+              },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    [
+                      "autoprefixer",
+                      {
+                        // Options
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
           ],
         },
       ],

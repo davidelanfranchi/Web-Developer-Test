@@ -1,5 +1,9 @@
-// Styles start here
+/* 
+====================
+Global styles
+====================
+*/
 
-body {
-    background: #FFF;
-}
+@import "./abstract";
+@import "./global/base";
+@import "./global/typography";
