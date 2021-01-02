@@ -12,6 +12,7 @@
     border-radius: 2px;
     box-shadow: 0 4px 5px rgb(0 0 0 / 20%);
     min-width: rem(110px);
+    padding-bottom: rem(10px);
 
     animation: menu-list-slide-up 0.3s ease-out;
   }
@@ -21,45 +22,66 @@
   }
 
   &__item {
-    @include mq(large) {
-      margin-right: rem(10px);
-    }
+    // @include mq(large) {
+    //   margin-right: rem(10px);
+    // }
   }
 
   &__link {
     display: block;
-    padding: 0.7em;
+    padding: 0.35em 0.7em;
     color: var(--black);
     text-decoration: none;
+    font-size: rem(12px);
 
-    @media (hover: hover) {
-      transition: color 0.3s;
-
-      &:hover {
-        color: var(--highlight-color);
-      }
+    &.is-icon {
+      padding: 0.4em 1.2em;
     }
   }
 
   &__link-label {
-    font-size: rem(12px);
+    display: inline-block;
+    font-size: inherit;
     text-transform: uppercase;
+    padding: 1em 1.5em;
+    border-radius: 3px;
   }
+
   &__link-icon {
     display: inline-block;
     width: rem(40px);
     height: rem(40px);
     position: relative;
+
     background-color: currentColor;
     mask-position: center;
     mask-repeat: no-repeat;
     mask-size: 50%;
   }
   &.mobile &__link-icon {
-    width: rem(20px);
-    height: rem(20px);
-    mask-size: 80%;
-    mask-position: left center;
+    // width: rem(20px);
+    // height: rem(20px);
+    // mask-size: 80%;
+    // mask-position: left center;
+  }
+
+  // Hover effects
+
+  @media (hover: hover) {
+    // Labels
+    &__link-label {
+      transition: background-color 0.3s;
+    }
+    &__link:hover &__link-label {
+      background-color: var(--light-gray);
+    }
+    // Icons
+    &__link.is-icon &__link-icon {
+      transition: background-color 0.3s;
+    }
+    &__link.is-icon:hover &__link-icon {
+      background-color: var(--highlight-color);
+    }
   }
 }
 

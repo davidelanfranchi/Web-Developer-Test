@@ -27,7 +27,9 @@ function MenuList(props) {
       {menuItems.map((item, index) => (
         <li className="MenuList__item" key={index}>
           <a
-            className="MenuList__link"
+            className={`MenuList__link ${
+              item.iconUrl ? "is-icon" : "is-label"
+            }`}
             href={item.href}
             aria-label={item.label}
           >
@@ -38,7 +40,9 @@ function MenuList(props) {
                   WebkitMaskImage: `url(${item.iconUrl})`,
                   maskImage: `url(${item.iconUrl})`,
                 }}
-              ></span>
+              >
+                {item.label}
+              </span>
             ) : (
               <span className="MenuList__link-label">{item.label}</span>
             )}
