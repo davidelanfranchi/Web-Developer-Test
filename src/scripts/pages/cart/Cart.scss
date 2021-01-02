@@ -1,0 +1,12 @@
+.Cart {
+  &__main {
+    padding-top: rem(100px);
+    @include mq(medium) {
+      padding-top: rem(150px);
+    }
+
+    @include mq(xlarge) {
+      padding-top: rem(200px);
+    }
+  }
+}

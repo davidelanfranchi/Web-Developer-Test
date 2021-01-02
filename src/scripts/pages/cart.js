@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Cart from "./components/Cart";
+import Cart from "./cart/Cart";
 
 function init() {
   ReactDOM.render(<Cart />, document.getElementById("cart"));
