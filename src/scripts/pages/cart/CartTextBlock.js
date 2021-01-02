@@ -2,11 +2,11 @@ import React from "react";
 
 import "./CartTextBlock.scss";
 
-function CarTextBlock(props) {
+function CartTextBlock(props) {
   return (
-    <div className="CarTextBlock">
-      <h1 className="CarTextBlock__heading">Your Basket</h1>
-      <p className="CarTextBlock__body">
+    <div className="CartTextBlock">
+      <h1 className="CartTextBlock__heading">Your Basket</h1>
+      <p className="CartTextBlock__body">
         Items you have added to your basket are shown below. Adjust the
         quantities or remove items before continuing purchase.
       </p>
@@ -14,4 +14,4 @@ function CarTextBlock(props) {
   );
 }
 
-export default CarTextBlock;
+export default CartTextBlock;

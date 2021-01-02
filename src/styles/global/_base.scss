@@ -36,6 +36,11 @@ button {
   cursor: pointer;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 :root {
   --black: #{$black};
   --white: #{$white};

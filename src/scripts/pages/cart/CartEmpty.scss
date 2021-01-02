@@ -1,10 +1,13 @@
-.CartTextBlock {
+.CartEmpty {
   @include small-container;
-  &__heading {
-    @include heading-1;
-  }
-  &__body {
+
+  &__message {
     @include p-simple;
+    color: var(--highlight-color);
+    a {
+      color: currentColor;
+      font-weight: 500;
+    }
   }
 
   margin-bottom: rem(30px);

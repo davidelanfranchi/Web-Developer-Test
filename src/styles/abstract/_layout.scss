@@ -41,8 +41,8 @@ Layout dimensions
   margin-right: auto;
   max-width: rem(650px);
 
-  padding-left: rem(15px);
-  padding-right: rem(15px);
+  padding-left: rem(20px);
+  padding-right: rem(20px);
   @include mq(medium) {
     padding-left: rem(25px);
     padding-right: rem(25px);
