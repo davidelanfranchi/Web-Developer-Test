@@ -34,17 +34,6 @@ module.exports = (env, argv) => {
                 url: false,
               },
             },
-            "sass-loader",
-            {
-              loader: "sass-resources-loader",
-              options: {
-                resources: path.resolve(
-                  __dirname,
-                  "src",
-                  "styles/_abstract.scss"
-                ),
-              },
-            },
             {
               loader: "postcss-loader",
               options: {
@@ -58,6 +47,17 @@ module.exports = (env, argv) => {
                     ],
                   ],
                 },
+              },
+            },
+            "sass-loader",
+            {
+              loader: "sass-resources-loader",
+              options: {
+                resources: path.resolve(
+                  __dirname,
+                  "src",
+                  "styles/_abstract.scss"
+                ),
               },
             },
           ],
