@@ -11,6 +11,11 @@ $font-family: "Libre Franklin", sans-serif;
   font-weight: 200;
   margin-bottom: 0.3em;
 }
+@mixin heading-2 {
+  font-size: 20px;
+  font-weight: 200;
+  margin-bottom: 0.3em;
+}
 
 @mixin p-simple {
   font-size: 14px;

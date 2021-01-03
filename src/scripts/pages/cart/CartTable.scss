@@ -89,6 +89,8 @@
   // Desktop styles
   @include mq(medium) {
     &__cell {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
       &.is-product {
       }
       &.is-price,
@@ -137,6 +139,8 @@
     }
   }
   &__quantity-input-btn {
+    display: inline-block;
+    vertical-align: middle;
     width: rem(30px);
     height: rem(30px);
     background-color: var(--highlight-color);
@@ -158,6 +162,8 @@
   }
 
   &__btn {
+    display: inline-block;
+    vertical-align: middle;
     width: rem(40px);
     height: rem(40px);
     background-color: var(--highlight-color);

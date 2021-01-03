@@ -70,6 +70,7 @@ module.exports = (env, argv) => {
       contentBase: "./public",
       open: true,
       hot: true,
+      transportMode: "ws",
     },
     plugins: [
       new CleanWebpackPlugin(),

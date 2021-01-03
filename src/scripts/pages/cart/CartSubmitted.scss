@@ -1,0 +1,22 @@
+.CartSubmitted {
+  @include small-container;
+
+  &__heading {
+    @include heading-2;
+    color: var(--highlight-color);
+  }
+
+  &__message {
+    @include p-simple;
+    color: var(--highlight-color);
+    a {
+      color: currentColor;
+      font-weight: 500;
+    }
+  }
+
+  margin-bottom: rem(30px);
+  @include mq(xlarge) {
+    margin-bottom: rem(50px);
+  }
+}

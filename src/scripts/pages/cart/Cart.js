@@ -8,11 +8,14 @@ import CartLoading from "./CartLoading";
 import CartTable from "./CartTable";
 import CartEmpty from "./CartEmpty";
 import CartSubmit from "./CartSubmit";
+import CartSubmitted from "./CartSubmitted";
 
 import { getSubtotal, getVat, getTotal } from "./utilities";
 
 function Cart(props) {
   const [hasFetchedData, setIsHasFetchedData] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
   const [cartData, setCartData] = useState({
     items: [],
     subtotal: 0,
@@ -22,7 +25,7 @@ function Cart(props) {
   });
 
   useEffect(() => {
-    fetch(process.env.API_CART_ENDPOINT)
+    fetch(process.env.CART_ITEMS_ENDPOINT)
       .then((response) => response.json())
       .then(({ items }) => {
         setIsHasFetchedData(true);
@@ -40,6 +43,7 @@ function Cart(props) {
       vat: getVat(items),
       total: getTotal(items),
       canBeSubmitted: items.length ? true : false,
+      hasBeenSubmitted: false,
     });
   }
 
@@ -71,8 +75,6 @@ function Cart(props) {
         }
         break;
       case "DELETE":
-        console.log("rem " + sku);
-        console.log(itemIndex);
         newItems = newItems
           .slice(0, itemIndex)
           .concat(newItems.slice(itemIndex + 1, newItems.length));
@@ -84,6 +86,26 @@ function Cart(props) {
     updateCartDataState(newItems);
   }
 
+  function submitCartData() {
+    if (!cartData.canBeSubmitted) {
+      return;
+    }
+    setIsSubmitting(true);
+
+    fetch(process.env.CART_SUBMIT_ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify(cartData.items),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setIsSubmitting(false);
+        setHasBeenSubmitted(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
   return (
     <div className="Cart">
       <div className="Cart__main">
@@ -91,11 +113,17 @@ function Cart(props) {
         <CartTextBlock />
 
         {hasFetchedData ? (
-          <Fragment>
+          <div className={isSubmitting ? "is-submitting" : ""}>
             <CartTable cartData={cartData} updateCartData={updateCartData} />
-            <CartSubmit canBeSubmitted={cartData.canBeSubmitted} />
+            {!hasBeenSubmitted && (
+              <CartSubmit
+                canBeSubmitted={cartData.canBeSubmitted}
+                submitCartData={submitCartData}
+              />
+            )}
             {!cartData.canBeSubmitted && <CartEmpty />}
-          </Fragment>
+            {hasBeenSubmitted && <CartSubmitted />}
+          </div>
         ) : (
           <CartLoading />
         )}

@@ -9,4 +9,9 @@
       padding-top: rem(180px);
     }
   }
+
+  .is-submitting {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
