@@ -33,6 +33,21 @@ function init() {
     },
     1500
   );
+
+  // Ignore other request, particularly webpack HMR ones
+
+  server.unhandledRequest = function (verb, path, request) {
+    const xhr = request.passthrough(); // <-- A native, sent xhr is returned
+
+    xhr.onloadend = (ev) => {
+      console.warn(`Response for ${path}`, {
+        verb,
+        path,
+        request,
+        responseEvent: ev,
+      });
+    };
+  };
 }
 
 export default {
