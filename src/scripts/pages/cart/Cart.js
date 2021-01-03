@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import cloneDeep from "lodash.clonedeep";
 
 import "./Cart.scss";
@@ -8,8 +8,8 @@ import TopBar from "../../components/layout/TopBar";
 
 import CartTextBlock from "./CartTextBlock";
 import CartTable from "./CartTable";
-// import CartSubmit from "./CartSubmit";
 import CartMessage from "./CartMessage";
+import CartToast, { notify } from "./CartToast";
 
 import { getSubtotal, getVat, getTotal } from "./utilities";
 
@@ -57,22 +57,24 @@ function Cart(props) {
         if (quantity >= 1) {
           newItems[itemIndex].quantity = quantity;
         } else {
-          console.warn("Minimun quantity");
+          notify("MINIMUM_QUANTITY");
         }
         break;
       case "INCREASE":
         if (quantity <= newItems[itemIndex].stockLevel) {
           newItems[itemIndex].quantity = quantity;
         } else {
-          console.warn("More than stock level");
+          notify("STOCK_LEVEL");
         }
         break;
 
       case "ADJUST":
+        console.log("ADJUST");
+
         if (quantity <= newItems[itemIndex].stockLevel) {
           newItems[itemIndex].quantity = quantity;
         } else {
-          console.warn("More than stock level");
+          notify("STOCK_LEVEL");
         }
         break;
       case "DELETE":
@@ -146,6 +148,8 @@ function Cart(props) {
           <CartTable isLoading={true} />
         )}
       </div>
+
+      <CartToast />
     </div>
   );
 }

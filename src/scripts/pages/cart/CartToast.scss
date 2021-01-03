@@ -1,0 +1,28 @@
+.CartToast {
+  &__container {
+    @include mq(xlarge) {
+      width: rem(400px);
+    }
+
+    .Toastify__close-button {
+      position: absolute;
+      top: rem(10px);
+      right: rem(10px);
+      &--default {
+        color: var(--highlight-color);
+      }
+    }
+  }
+  &__toast {
+    padding: rem(15px) rem(35px) rem(15px) rem(25px);
+  }
+  &__body {
+    @include p-simple;
+    color: var(--text-color);
+  }
+  &__progress {
+    background: none;
+    background-color: var(--highlight-color);
+    height: 2px;
+  }
+}

@@ -79,6 +79,8 @@ function CartTable(props) {
                         className="CartTable__quantity-input-el"
                         type="text"
                         value={item.quantity}
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         onChange={(e) =>
                           props.updateCartData(
                             "ADJUST",
