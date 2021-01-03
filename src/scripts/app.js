@@ -1,5 +1,7 @@
 // Scripts start here
 
+import "remove-focus-outline";
+
 import mockApi from "./mockApi";
 if (process.env.USE_MOCK_API === "true") {
   mockApi.init();
