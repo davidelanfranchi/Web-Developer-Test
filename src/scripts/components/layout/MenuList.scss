@@ -14,7 +14,7 @@
     min-width: rem(110px);
     padding-bottom: rem(10px);
 
-    animation: menu-list-slide-up 0.3s ease-out;
+    animation: fade-up 0.3s ease-out;
   }
   &.desktop {
     display: flex;
@@ -82,16 +82,5 @@
     &__link.is-icon:hover &__link-icon {
       background-color: var(--highlight-color);
     }
-  }
-}
-
-@keyframes menu-list-slide-up {
-  0% {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

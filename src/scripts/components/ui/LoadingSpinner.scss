@@ -1,8 +1,0 @@
-.CartLoading {
-  @include small-container;
-
-  margin-bottom: rem(30px);
-  @include mq(xlarge) {
-    margin-bottom: rem(50px);
-  }
-}

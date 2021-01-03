@@ -28,15 +28,6 @@
     background-color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
 
-    animation: menu-backdrop-fade-in 0.15s ease-out;
-  }
-}
-
-@keyframes menu-backdrop-fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+    animation: fade-in 0.15s ease-out;
   }
 }

@@ -49,4 +49,5 @@ table {
   --extra-light-gray: #{$extra-light-gray};
   --text-color: #{$dark-gray};
   --highlight-color: #{$blue};
+  --light-highlight-color: #{lighten($blue, 25)};
 }
