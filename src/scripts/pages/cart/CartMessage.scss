@@ -1,5 +1,14 @@
-.CartSubmitted {
+.CartMessage {
   @include small-container;
+  padding-top: rem(15px);
+  padding-bottom: rem(15px);
+  @include mq(medium) {
+    padding-top: rem(25px);
+    padding-bottom: rem(25px);
+  }
+
+  border: 1px solid var(--highlight-color);
+  border-radius: 3px;
 
   &__heading {
     @include heading-2;
@@ -8,11 +17,8 @@
 
   &__message {
     @include p-simple;
+    margin-bottom: 0;
     color: var(--highlight-color);
-    a {
-      color: currentColor;
-      font-weight: 500;
-    }
   }
 
   margin-bottom: rem(30px);

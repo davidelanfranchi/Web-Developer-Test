@@ -6,9 +6,8 @@ import TopBar from "../../layout/TopBar";
 import CartTextBlock from "./CartTextBlock";
 import CartLoading from "./CartLoading";
 import CartTable from "./CartTable";
-import CartEmpty from "./CartEmpty";
 import CartSubmit from "./CartSubmit";
-import CartSubmitted from "./CartSubmitted";
+import CartMessage from "./CartMessage";
 
 import { getSubtotal, getVat, getTotal } from "./utilities";
 
@@ -121,8 +120,20 @@ function Cart(props) {
                 submitCartData={submitCartData}
               />
             )}
-            {!cartData.canBeSubmitted && <CartEmpty />}
-            {hasBeenSubmitted && <CartSubmitted />}
+            {!cartData.canBeSubmitted && (
+              <CartMessage
+                heading="Your basket is now empty"
+                message="Please, visit our listing page and get
+                inspired by latest casual and street wear looks."
+              />
+            )}
+            {hasBeenSubmitted && (
+              <CartMessage
+                heading="End with a bang your purchase!"
+                message="Give our developers more time to develop
+        our amazing UI and come back soon to finish your shopping process."
+              />
+            )}
           </div>
         ) : (
           <CartLoading />
