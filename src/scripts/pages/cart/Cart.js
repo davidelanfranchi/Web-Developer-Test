@@ -136,7 +136,8 @@ function Cart(props) {
             )}
           </div>
         ) : (
-          <CartLoading />
+          // <CartLoading />
+          <CartTable isLoading={true} />
         )}
       </div>
     </div>

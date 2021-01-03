@@ -101,6 +101,7 @@
       &.is-quantity {
         text-align: right;
         width: auto;
+        width: rem(180px);
       }
       &.is-delete {
         text-align: right;
@@ -125,6 +126,8 @@
       }
     }
   }
+
+  // Quantity input
 
   &__quantity-input-wr {
     display: inline-flex;
@@ -161,6 +164,8 @@
     text-align: center;
   }
 
+  // Actiuons buttons
+
   &__btn {
     display: inline-block;
     vertical-align: middle;
@@ -173,5 +178,33 @@
     &.is-delete {
       mask-image: url("/static/images/bin.svg");
     }
+  }
+
+  // Loading state
+  &__cell.is-loading {
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 80%;
+      top: 10%;
+      left: 0;
+      background-color: var(--extra-light-gray);
+      animation: content-loading-animation 1s infinite ease-in-out;
+    }
+  }
+}
+
+@keyframes content-loading-animation {
+  0% {
+    background-color: rgba(235, 235, 235, 0.1);
+  }
+  50% {
+    background-color: rgba(232, 232, 232, 0.3);
+  }
+  100% {
+    background-color: rgba(235, 235, 235, 0.1);
   }
 }

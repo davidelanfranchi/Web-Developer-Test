@@ -1,10 +1,11 @@
 import Pretender from "pretender";
 import cartItems from "./cartItems.json";
 
+// Set a delay to simulate network latency
+const fakeDelay = 1500;
+
 function init() {
   const server = new Pretender();
-
-  // All request have a 1500ms delay to seem more real
 
   server.get(
     process.env.CART_ITEMS_ENDPOINT,
@@ -15,7 +16,7 @@ function init() {
         JSON.stringify(cartItems),
       ];
     },
-    1500
+    fakeDelay
   );
 
   server.post(
@@ -31,13 +32,13 @@ function init() {
         }),
       ];
     },
-    1500
+    fakeDelay
   );
 
   // Ignore other request, particularly webpack HMR ones
 
   server.unhandledRequest = function (verb, path, request) {
-    const xhr = request.passthrough(); // <-- A native, sent xhr is returned
+    const xhr = request.passthrough();
 
     xhr.onloadend = (ev) => {
       console.warn(`Response for ${path}`, {
