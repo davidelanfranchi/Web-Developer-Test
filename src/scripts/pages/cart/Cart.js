@@ -2,11 +2,13 @@ import React, { useState, useEffect, Fragment } from "react";
 import cloneDeep from "lodash.clonedeep";
 
 import "./Cart.scss";
-import TopBar from "../../layout/TopBar";
+
+import Button from "./../../components/ui/Button";
+import TopBar from "../../components/layout/TopBar";
+
 import CartTextBlock from "./CartTextBlock";
-import CartLoading from "./CartLoading";
 import CartTable from "./CartTable";
-import CartSubmit from "./CartSubmit";
+// import CartSubmit from "./CartSubmit";
 import CartMessage from "./CartMessage";
 
 import { getSubtotal, getVat, getTotal } from "./utilities";
@@ -115,10 +117,14 @@ function Cart(props) {
           <div className={isSubmitting ? "is-submitting" : ""}>
             <CartTable cartData={cartData} updateCartData={updateCartData} />
             {!hasBeenSubmitted && (
-              <CartSubmit
-                canBeSubmitted={cartData.canBeSubmitted}
-                submitCartData={submitCartData}
-              />
+              <div className="Cart__submit">
+                <Button
+                  label="Buy now"
+                  isDisabled={!cartData.canBeSubmitted}
+                  onClickHandler={submitCartData}
+                  hasSpinner={isSubmitting}
+                />
+              </div>
             )}
             {!cartData.canBeSubmitted && (
               <CartMessage

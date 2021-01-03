@@ -2,7 +2,7 @@ import Pretender from "pretender";
 import cartItems from "./cartItems.json";
 
 // Set a delay to simulate network latency
-const fakeDelay = 1500;
+const fakeDelay = 1000;
 
 function init() {
   const server = new Pretender();

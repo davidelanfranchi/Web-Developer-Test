@@ -3,7 +3,7 @@ import { useMediaQuery } from "@react-hook/media-query";
 
 import "./Menu.scss";
 
-import Portal from "./../components/Portal";
+import Portal from "./../Portal";
 import MenuList from "./MenuList";
 
 function Menu() {

@@ -1,4 +1,6 @@
 .Cart {
+  margin-bottom: rem(100px);
+
   &__main {
     padding-top: rem(100px);
     @include mq(medium) {
@@ -10,8 +12,21 @@
     }
   }
 
+  &__submit {
+    @include small-container;
+    text-align: right;
+
+    margin-bottom: rem(30px);
+  }
+
   .is-submitting {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  .Button {
+    @include mq(medium) {
+      margin-right: rem(60px);
+    }
   }
 }
