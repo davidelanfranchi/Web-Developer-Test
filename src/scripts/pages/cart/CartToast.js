@@ -39,6 +39,24 @@ export const notify = (notification) => {
         }
       );
       break;
+    case "INVALID_VALUE_NOT_A_NUMBER":
+      toast(
+        "We appreciate your interest for our products, but we cannot ship them as characters or symbols.",
+        {
+          position: toast.POSITION.BOTTOM_CENTER,
+          toastId: "INVALID_VALUE_NOT_A_NUMBER",
+        }
+      );
+      break;
+    case "INVALID_VALUE_NOT_A_INTEGER":
+      toast(
+        "We appreciate your interest for our products, but you can receive them only in one piece.",
+        {
+          position: toast.POSITION.BOTTOM_CENTER,
+          toastId: "INVALID_VALUE_NOT_A_INTEGER",
+        }
+      );
+      break;
     default:
       console.warn("The function needs a notification name");
   }

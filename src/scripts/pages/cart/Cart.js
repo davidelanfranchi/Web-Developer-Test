@@ -4,7 +4,6 @@ import cloneDeep from "lodash.clonedeep";
 import "./Cart.scss";
 
 import Button from "./../../components/ui/Button";
-import TopBar from "../../components/layout/TopBar";
 
 import CartTextBlock from "./CartTextBlock";
 import CartTable from "./CartTable";
@@ -112,7 +111,6 @@ function Cart(props) {
   return (
     <div className="Cart">
       <div className="Cart__main">
-        <TopBar />
         <CartTextBlock />
 
         {hasFetchedData ? (
