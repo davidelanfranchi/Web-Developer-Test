@@ -1,0 +1,152 @@
+import React, { useContext, useState, Fragment } from "react";
+import { toast } from "react-toastify";
+
+import "./CartTable.scss";
+
+import CartContext from "./state/CartContext";
+import { notify } from "./CartToast";
+
+import { round } from "./utilities";
+
+function CartTableRow(props) {
+  const { state, dispatch } = useContext(CartContext);
+  const item = props.item;
+  const itemIndex = state.items.findIndex(
+    (loopItem) => loopItem.sku === item.sku
+  );
+  const [clonedQuantity, setClonedQuantity] = useState(item.quantity);
+
+  function handleChange(e) {
+    setClonedQuantity(e.target.value);
+  }
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      validateInput(e.target.value);
+    }
+  }
+  function handleBlur(e) {
+    validateInput(e.target.value);
+  }
+  function validateInput(value) {
+    if (isNaN(value)) {
+      notify("NOT_A_NUMBER");
+      setClonedQuantity(state.items[itemIndex].quantity);
+    } else if (!Number.isInteger(Number(value))) {
+      notify("NOT_AN_INTEGER");
+      setClonedQuantity(state.items[itemIndex].quantity);
+    } else if (value > item.stockLevel) {
+      notify("STOCK_LEVEL");
+      setClonedQuantity(state.items[itemIndex].quantity);
+    } else {
+      dispatch({
+        type: "UPDATE_ITEM",
+        sku: item.sku,
+        quantity: value,
+      });
+      setClonedQuantity(value);
+    }
+  }
+
+  function decrease() {
+    const newQuantity = item.quantity - 1;
+    if (newQuantity >= 1) {
+      dispatch({ type: "UPDATE_ITEM", sku: item.sku, quantity: newQuantity });
+      setClonedQuantity(newQuantity);
+    } else {
+      notify("MINIMUM_QUANTITY");
+    }
+  }
+  function increase() {
+    const newQuantity = item.quantity + 1;
+    if (newQuantity <= item.stockLevel) {
+      dispatch({ type: "UPDATE_ITEM", sku: item.sku, quantity: newQuantity });
+      setClonedQuantity(newQuantity);
+    } else {
+      notify("STOCK_LEVEL");
+    }
+  }
+
+  function remove() {
+    dispatch({
+      type: "QUEUE_FOR_REMOVAL",
+      sku: item.sku,
+    });
+    toast(
+      () => {
+        return (
+          <div>
+            <strong>{item.name}</strong> has been removed.{" "}
+            <button className="CartToast__button" onClick={undoRemove}>
+              Undo
+            </button>
+          </div>
+        );
+      },
+      {
+        onClose: () => dispatch({ type: "CLEAN_REMOVAL_QUEQUE" }),
+        position: toast.POSITION.BOTTOM_CENTER,
+      }
+    );
+  }
+  function undoRemove() {
+    dispatch({ type: "UNDO_REMOVE", sku: item.sku });
+  }
+
+  return (
+    <tr
+      className={`CartTable__row ${
+        item.quantity > item.stockLevel ? "is-out-of-stock" : ""
+      }`}
+      key={item.sku}
+    >
+      <td
+        className="CartTable__cell is-product has-no-h-padding"
+        data-title="Product"
+      >
+        {item.name}
+      </td>
+      <td className="CartTable__cell is-price" data-title="Price">
+        £{item.price}
+      </td>
+      <td className="CartTable__cell is-quantity" data-title="Quantity">
+        <div className="CartTable__quantity-input-wr">
+          <button
+            className="CartTable__quantity-input-btn is-minus"
+            aria-label="Decrease quantity"
+            onClick={decrease}
+          ></button>
+          <input
+            className="CartTable__quantity-input-el"
+            type="text"
+            value={clonedQuantity}
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+          />
+          <button
+            className="CartTable__quantity-input-btn is-plus"
+            aria-label="Increase quantity"
+            onClick={increase}
+          ></button>
+        </div>
+      </td>
+      <td className="CartTable__cell is-cost" data-title="Cost">
+        £{round(item.price * item.quantity)}
+      </td>
+      <td
+        className="CartTable__cell is-delete has-no-h-padding"
+        data-title="Delete"
+      >
+        <button
+          className="CartTable__btn is-delete"
+          aria-label="Delete"
+          onClick={remove}
+        ></button>
+      </td>
+    </tr>
+  );
+}
+
+export default CartTableRow;

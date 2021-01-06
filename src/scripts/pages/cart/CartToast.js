@@ -19,14 +19,13 @@ function CartToast(props) {
   );
 }
 
-export const notify = (notification) => {
+export const notify = (notification, label) => {
   switch (notification) {
     case "MINIMUM_QUANTITY":
       toast(
         "You must have a minimum of 1 product. Please, use the delete button if you want to remove it.",
         {
           position: toast.POSITION.BOTTOM_CENTER,
-          toastId: "MINIMUM_QUANTITY",
         }
       );
       break;
@@ -35,25 +34,22 @@ export const notify = (notification) => {
         "Hooray! You reached the top of our stock. Please, get in touch directly with us to know if we can satisfy your desires.",
         {
           position: toast.POSITION.BOTTOM_CENTER,
-          toastId: "STOCK_LEVEL",
         }
       );
       break;
-    case "INVALID_VALUE_NOT_A_NUMBER":
+    case "NOT_A_NUMBER":
       toast(
         "We appreciate your interest for our products, but we cannot ship them as characters or symbols.",
         {
           position: toast.POSITION.BOTTOM_CENTER,
-          toastId: "INVALID_VALUE_NOT_A_NUMBER",
         }
       );
       break;
-    case "INVALID_VALUE_NOT_A_INTEGER":
+    case "NOT_AN_INTEGER":
       toast(
         "We appreciate your interest for our products, but you can receive them only in one piece.",
         {
           position: toast.POSITION.BOTTOM_CENTER,
-          toastId: "INVALID_VALUE_NOT_A_INTEGER",
         }
       );
       break;

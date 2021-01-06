@@ -1,10 +1,16 @@
-import React, { Fragment } from "react";
-
-import { round } from "./utilities";
+import React, { useContext, useState, Fragment } from "react";
 
 import "./CartTable.scss";
 
+import CartTableRow from "./CartTableRow";
+
+import { getSubtotal, getVat, getTotal } from "./utilities";
+
+import CartContext from "./state/CartContext";
+
 function CartTable(props) {
+  const { state, dispatch } = useContext(CartContext);
+
   return (
     <div className="CartTable">
       <table className="CartTable__table">
@@ -43,80 +49,11 @@ function CartTable(props) {
         ) : (
           <Fragment>
             <tbody className="CartTable__body">
-              {props.cartData.items.map((item) => (
-                <tr
-                  className={`CartTable__row ${
-                    item.quantity > item.stockLevel ? "is-out-of-stock" : ""
-                  }`}
-                  key={item.sku}
-                >
-                  <td
-                    className="CartTable__cell is-product has-no-h-padding"
-                    data-title="Product"
-                  >
-                    {item.name}
-                  </td>
-                  <td className="CartTable__cell is-price" data-title="Price">
-                    £{item.price}
-                  </td>
-                  <td
-                    className="CartTable__cell is-quantity"
-                    data-title="Quantity"
-                  >
-                    <div className="CartTable__quantity-input-wr">
-                      <button
-                        className="CartTable__quantity-input-btn is-minus"
-                        aria-label="Increase quantity"
-                        onClick={(e) =>
-                          props.updateCartData(
-                            "DECREASE",
-                            item.sku,
-                            item.quantity - 1
-                          )
-                        }
-                      ></button>
-                      <input
-                        className="CartTable__quantity-input-el"
-                        type="text"
-                        value={item.quantity}
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        onChange={(e) =>
-                          props.updateCartData(
-                            "ADJUST",
-                            item.sku,
-                            e.target.value
-                          )
-                        }
-                      />
-                      <button
-                        className="CartTable__quantity-input-btn is-plus"
-                        aria-label="Decrease quantity"
-                        onClick={(e) =>
-                          props.updateCartData(
-                            "INCREASE",
-                            item.sku,
-                            item.quantity + 1
-                          )
-                        }
-                      ></button>
-                    </div>
-                  </td>
-                  <td className="CartTable__cell is-cost" data-title="Cost">
-                    £{round(item.price * item.quantity)}
-                  </td>
-                  <td
-                    className="CartTable__cell is-delete has-no-h-padding"
-                    data-title="Delete"
-                  >
-                    <button
-                      className="CartTable__btn is-delete"
-                      aria-label="Delete"
-                      onClick={(e) => props.updateCartData("DELETE", item.sku)}
-                    ></button>
-                  </td>
-                </tr>
-              ))}
+              {state.items
+                .filter((item) => !state.toRemove.includes(item.sku))
+                .map((item) => (
+                  <CartTableRow key={item.sku} item={item} />
+                ))}
             </tbody>
             <tfoot className="CartTable__recap">
               <tr className="CartTable__row">
@@ -124,7 +61,7 @@ function CartTable(props) {
                   Subtotal
                 </td>
                 <td className="CartTable__cell is-subtotal">
-                  £{props.cartData.subtotal}
+                  £{getSubtotal(state.items)}
                 </td>
               </tr>
               <tr className="CartTable__row">
@@ -132,7 +69,7 @@ function CartTable(props) {
                   VAT at 20%
                 </td>
                 <td className="CartTable__cell is-vat">
-                  £{props.cartData.vat}
+                  £{getVat(state.items)}
                 </td>
               </tr>
               <tr className="CartTable__row">
@@ -143,7 +80,7 @@ function CartTable(props) {
                   Total cost
                 </td>
                 <td className="CartTable__cell is-total is-highlighted">
-                  £{props.cartData.total}
+                  £{getTotal(state.items)}
                 </td>
               </tr>
             </tfoot>

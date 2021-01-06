@@ -1,7 +1,7 @@
 .CartToast {
   &__container {
-    @include mq(xlarge) {
-      width: rem(400px);
+    @include mq(large) {
+      width: rem(450px);
     }
 
     .Toastify__close-button {
@@ -24,5 +24,16 @@
     background: none;
     background-color: var(--highlight-color);
     height: 2px;
+  }
+  &__button {
+    background-color: var(--highlight-color);
+    color: var(--white);
+    font-size: 80%;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0.5em 1em;
+    border-radius: 3px;
+    margin-left: 1em;
   }
 }
