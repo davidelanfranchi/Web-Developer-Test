@@ -3,6 +3,8 @@ import cloneDeep from "lodash.clonedeep";
 
 import "./Cart.scss";
 
+import TopBar from "./../../components/layout/TopBar";
+
 import Button from "./../../components/ui/Button";
 
 import CartTextBlock from "./CartTextBlock";
@@ -60,6 +62,7 @@ function Cart(props) {
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       <div className="Cart">
+        <TopBar />
         <div className="Cart__main">
           <CartTextBlock />
 

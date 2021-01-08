@@ -28,6 +28,7 @@
   }
 
   &__link {
+    position: relative;
     display: block;
     padding: 0.35em 0.7em;
     color: var(--black);
@@ -63,6 +64,18 @@
     // height: rem(20px);
     // mask-size: 80%;
     // mask-position: left center;
+  }
+  &__link-icon-number {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color);
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    border-radius: 50%;
   }
 
   // Hover effects

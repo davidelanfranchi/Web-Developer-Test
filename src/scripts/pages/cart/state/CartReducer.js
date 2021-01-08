@@ -1,6 +1,4 @@
 export default function reducer(state, action) {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
     case "SET_FETCHED_ITEMS":
       return {

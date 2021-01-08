@@ -1,5 +1,7 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import "./MenuList.scss";
+
+import CartContext from "./../../pages/cart/state/CartContext";
 
 const menuItems = [
   {
@@ -22,6 +24,7 @@ const menuItems = [
 ];
 
 function MenuList(props) {
+  const { state, dispatch } = useContext(CartContext);
   return (
     <ul className={`MenuList ${props.type}`}>
       {menuItems.map((item, index) => (
@@ -34,15 +37,22 @@ function MenuList(props) {
             aria-label={item.label}
           >
             {item.iconUrl ? (
-              <span
-                className="MenuList__link-icon"
-                style={{
-                  WebkitMaskImage: `url(${item.iconUrl})`,
-                  maskImage: `url(${item.iconUrl})`,
-                }}
-              >
-                {item.label}
-              </span>
+              <Fragment>
+                <span
+                  className="MenuList__link-icon"
+                  style={{
+                    WebkitMaskImage: `url(${item.iconUrl})`,
+                    maskImage: `url(${item.iconUrl})`,
+                  }}
+                >
+                  {item.label}
+                </span>
+                {state.items.length > 0 && (
+                  <span className="MenuList__link-icon-number">
+                    {state.items.length}
+                  </span>
+                )}
+              </Fragment>
             ) : (
               <span className="MenuList__link-label">{item.label}</span>
             )}

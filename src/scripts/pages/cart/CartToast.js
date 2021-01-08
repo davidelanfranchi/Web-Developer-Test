@@ -9,7 +9,7 @@ import "./CartToast.scss";
 function CartToast(props) {
   return (
     <ToastContainer
-      autoClose={100000}
+      autoClose={2000}
       transition={Slide}
       className="CartToast__container"
       toastClassName="CartToast__toast"
