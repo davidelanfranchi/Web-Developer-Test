@@ -4,12 +4,31 @@ import "./CartTable.scss";
 
 import CartTableRow from "./CartTableRow";
 
-import { getSubtotal, getVat, getTotal } from "./utilities";
+import { round } from "./utilities";
 
 import CartContext from "./state/CartContext";
 
 function CartTable(props) {
   const { state, dispatch } = useContext(CartContext);
+
+  function getSubtotal(items) {
+    let itemsToCount = state.items.filter((item) => {
+      return (
+        item.quantity <= item.stockLevel && !state.toRemove.includes(item.sku)
+      );
+    });
+    let subTotal = 0;
+    for (let i = 0; i < itemsToCount.length; ++i) {
+      subTotal += itemsToCount[i].price * itemsToCount[i].quantity;
+    }
+    return round(subTotal);
+  }
+  function getVat(items) {
+    return round((getSubtotal(items) / 100) * 20);
+  }
+  function getTotal(items) {
+    return round(getSubtotal(items) + getVat(items));
+  }
 
   return (
     <div
@@ -65,7 +84,7 @@ function CartTable(props) {
                   Subtotal
                 </td>
                 <td className="CartTable__cell is-subtotal">
-                  £{getSubtotal(state.items)}
+                  £{getSubtotal(state.items, state.toRemove)}
                 </td>
               </tr>
               <tr className="CartTable__row">
