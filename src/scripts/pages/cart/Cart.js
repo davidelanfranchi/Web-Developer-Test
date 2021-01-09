@@ -39,6 +39,15 @@ function Cart(props) {
       });
   }, []);
 
+  function canBeSubmitted() {
+    console.log(state.items.length);
+    let itemsToBuy = state.items.filter(
+      (item) => item.quantity <= item.stockLevel
+    ).length;
+    console.log(itemsToBuy > 0);
+    return itemsToBuy > 0 ? true : false;
+  }
+
   function submit() {
     if (!state.items.length) {
       return;
@@ -68,12 +77,12 @@ function Cart(props) {
 
           {hasFetchedData ? (
             <div className={isSubmitting ? "is-submitting" : ""}>
-              <CartTable />
+              <CartTable hasBeenSubmitted={hasBeenSubmitted} />
               {!hasBeenSubmitted && (
                 <div className="Cart__submit">
                   <Button
                     label="Buy now"
-                    isDisabled={!state.items.length}
+                    isDisabled={!canBeSubmitted()}
                     onClickHandler={submit}
                     hasSpinner={isSubmitting}
                   />

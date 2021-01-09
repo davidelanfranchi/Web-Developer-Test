@@ -1,7 +1,9 @@
 export const getSubtotal = function (items) {
   let subTotal = 0;
   for (let i = 0; i < items.length; ++i) {
-    subTotal += items[i].price * items[i].quantity;
+    if (items[i].quantity <= items[i].stockLevel) {
+      subTotal += items[i].price * items[i].quantity;
+    }
   }
   return round(subTotal);
 };

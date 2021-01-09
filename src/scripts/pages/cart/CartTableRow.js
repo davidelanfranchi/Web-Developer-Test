@@ -103,7 +103,16 @@ function CartTableRow(props) {
         className="CartTable__cell is-product has-no-h-padding"
         data-title="Product"
       >
-        {item.name}
+        {item.quantity > item.stockLevel ? (
+          <span className="CartTable__out-of-stock-msg-wr">
+            {item.name}
+            <span className="CartTable__out-of-stock-msg">
+              This item is now out of stock
+            </span>
+          </span>
+        ) : (
+          <span>{item.name}</span>
+        )}
       </td>
       <td className="CartTable__cell is-price" data-title="Price">
         £{item.price}

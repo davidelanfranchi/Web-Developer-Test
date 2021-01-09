@@ -20,12 +20,6 @@
     }
   }
 
-  &__row {
-    &.is-out-of-stock {
-      opacity: 0.5;
-    }
-  }
-
   &__cell {
     @include p-simple;
     line-height: rem(40px);
@@ -127,6 +121,36 @@
     }
   }
 
+  &__out-of-stock-msg-wr {
+    display: block;
+    position: relative;
+  }
+  &__out-of-stock-msg {
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--error-color);
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: calc(100% - 1em);
+    width: 200%;
+    line-height: 1;
+  }
+  &__row.is-out-of-stock {
+    .is-price,
+    .is-cost,
+    .is-quantity {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .is-price,
+    .is-cost {
+      text-decoration: line-through;
+    }
+  }
+
   // Quantity input
 
   &__quantity-input-wr {
@@ -164,7 +188,7 @@
     text-align: center;
   }
 
-  // Actiuons buttons
+  // Actions buttons
 
   &__btn {
     display: inline-block;
@@ -194,6 +218,12 @@
       background-color: var(--extra-light-gray);
       animation: content-loading-animation 1s infinite ease-in-out;
     }
+  }
+
+  // Submitted state
+  &.has-been-submitted {
+    opacity: 0.3;
+    pointer-events: none;
   }
 }
 

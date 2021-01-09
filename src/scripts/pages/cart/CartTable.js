@@ -12,7 +12,11 @@ function CartTable(props) {
   const { state, dispatch } = useContext(CartContext);
 
   return (
-    <div className="CartTable">
+    <div
+      className={`CartTable ${
+        props.hasBeenSubmitted ? "has-been-submitted" : ""
+      }`}
+    >
       <table className="CartTable__table">
         <thead className="CartTable__head">
           <tr>

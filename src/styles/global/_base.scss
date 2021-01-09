@@ -50,4 +50,5 @@ table {
   --text-color: #{$dark-gray};
   --highlight-color: #{$blue};
   --light-highlight-color: #{lighten($blue, 25)};
+  --error-color: #{$red};
 }
