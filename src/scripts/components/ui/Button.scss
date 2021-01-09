@@ -41,7 +41,7 @@
       transform: scaleY(0);
       transform-origin: center top;
     }
-    &:hover:before {
+    &:not([disabled]):hover:before {
       transform: scaleY(1);
       transform-origin: center bottom;
     }

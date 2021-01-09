@@ -1,7 +1,7 @@
 import React, { useContext, useState, Fragment } from "react";
 import { toast } from "react-toastify";
 
-import "./CartTable.scss";
+import IconButton from "./../../components/ui/IconButton";
 
 import CartContext from "./state/CartContext";
 import { notify } from "./CartToast";
@@ -148,11 +148,11 @@ function CartTableRow(props) {
         className="CartTable__cell is-delete has-no-h-padding"
         data-title="Delete"
       >
-        <button
-          className="CartTable__btn is-delete"
-          aria-label="Delete"
-          onClick={remove}
-        ></button>
+        <IconButton
+          label="Delete"
+          mask="/static/images/bin.svg"
+          onClickHandler={remove}
+        />
       </td>
     </tr>
   );

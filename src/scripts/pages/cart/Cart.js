@@ -6,6 +6,7 @@ import "./Cart.scss";
 import TopBar from "./../../components/layout/TopBar";
 
 import Button from "./../../components/ui/Button";
+import IconButton from "./../../components/ui/IconButton";
 
 import CartTextBlock from "./CartTextBlock";
 import CartTable from "./CartTable";
@@ -66,6 +67,10 @@ function Cart(props) {
       });
   }
 
+  // function RefreshAction() {
+  //   return <IconButton label="Refresh page" mask="/static/images/bin.svg" />;
+  // }
+
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       <div className="Cart">
@@ -90,7 +95,16 @@ function Cart(props) {
                 <CartMessage
                   heading="Your basket is now empty"
                   message="Please, visit our listing page and get
-                inspired by latest casual and street wear looks."
+              inspired by latest casual and street wear looks."
+                  action={
+                    <IconButton
+                      label="Refresh page"
+                      mask="/static/images/refresh.svg"
+                      onClickHandler={() => {
+                        location.reload();
+                      }}
+                    />
+                  }
                 />
               )}
               {hasBeenSubmitted && (
@@ -98,6 +112,15 @@ function Cart(props) {
                   heading="End with a bang your purchase!"
                   message="Give our developers more time to develop
         our amazing UI and come back soon to finish your shopping process."
+                  action={
+                    <IconButton
+                      label="Refresh page"
+                      mask="/static/images/refresh.svg"
+                      onClickHandler={() => {
+                        location.reload();
+                      }}
+                    />
+                  }
                 />
               )}
             </div>
