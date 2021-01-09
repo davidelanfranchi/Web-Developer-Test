@@ -102,7 +102,7 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         patterns: [{ from: "src/static", to: "static" }],
       }),
-      new Dotenv(),
+      new Dotenv({ systemvars: true }),
     ],
   };
 };
