@@ -180,6 +180,12 @@
     &.is-minus {
       mask-image: url("/static/images/minus.svg");
     }
+    @media (hover: hover) {
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: var(--dark-highlight-color);
+      }
+    }
   }
   &__quantity-input-el {
     border: none;
@@ -201,6 +207,12 @@
     mask-size: 50%;
     &.is-delete {
       mask-image: url("/static/images/bin.svg");
+    }
+    @media (hover: hover) {
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: var(--dark-highlight-color);
+      }
     }
   }
 
