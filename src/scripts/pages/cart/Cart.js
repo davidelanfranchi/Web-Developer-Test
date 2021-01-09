@@ -40,11 +40,9 @@ function Cart(props) {
   }, []);
 
   function canBeSubmitted() {
-    console.log(state.items.length);
     let itemsToBuy = state.items.filter(
       (item) => item.quantity <= item.stockLevel
     ).length;
-    console.log(itemsToBuy > 0);
     return itemsToBuy > 0 ? true : false;
   }
 
