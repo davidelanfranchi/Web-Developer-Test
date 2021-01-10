@@ -16,6 +16,15 @@ function CartTableRow(props) {
   );
   const [clonedQuantity, setClonedQuantity] = useState(item.quantity);
 
+  function size(itemSize) {
+    const sizes = {
+      small: "S",
+      medium: "M",
+      large: "L",
+    };
+    return <span>({sizes[itemSize]})</span>;
+  }
+
   function handleChange(e) {
     setClonedQuantity(e.target.value);
   }
@@ -110,13 +119,16 @@ function CartTableRow(props) {
       >
         {item.quantity > item.stockLevel ? (
           <span className="CartTable__out-of-stock-msg-wr">
-            {item.name}
+            {item.name}&nbsp;
+            {item.size && <>&nbsp;{size(item.size)}</>}
             <span className="CartTable__out-of-stock-msg">
               This item is now out of stock
             </span>
           </span>
         ) : (
-          <span>{item.name}</span>
+          <span>
+            {item.name} {item.size && size(item.size)}
+          </span>
         )}
       </td>
       <td className="CartTable__cell is-price" data-title="Price">
