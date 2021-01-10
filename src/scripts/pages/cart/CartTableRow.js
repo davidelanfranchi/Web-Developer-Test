@@ -28,11 +28,16 @@ function CartTableRow(props) {
     validateInput(e.target.value);
   }
   function validateInput(value) {
-    if (isNaN(value)) {
+    if (value === "") {
+      setClonedQuantity(state.items[itemIndex].quantity);
+    } else if (isNaN(value)) {
       notify("NOT_A_NUMBER");
       setClonedQuantity(state.items[itemIndex].quantity);
     } else if (!Number.isInteger(Number(value))) {
       notify("NOT_AN_INTEGER");
+      setClonedQuantity(state.items[itemIndex].quantity);
+    } else if (Number(value) <= 0) {
+      notify("MINIMUM_QUANTITY");
       setClonedQuantity(state.items[itemIndex].quantity);
     } else if (value > item.stockLevel) {
       notify("STOCK_LEVEL");
