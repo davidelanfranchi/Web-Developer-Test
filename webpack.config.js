@@ -73,6 +73,7 @@ module.exports = (env, argv) => {
     },
     devtool: isDevMode ? "inline-source-map" : false,
     devServer: {
+      host: "192.168.178.59",
       contentBase: "./public",
       open: true,
       hot: true,

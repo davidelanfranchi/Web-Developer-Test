@@ -60,3 +60,4 @@ typings/
 # Output directory
 /public
 
+src/static/.DS_Store

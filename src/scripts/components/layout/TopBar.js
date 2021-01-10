@@ -28,7 +28,7 @@ function TopBar() {
     <div className="TopBar">
       <div className="TopBar__container">
         <div className="TopBar__left">
-          <a href="#" aria-label="Back home">
+          <a href="/" aria-label="Back home">
             <img
               className="TopBar__logo"
               src="/static/images/logo.svg"
