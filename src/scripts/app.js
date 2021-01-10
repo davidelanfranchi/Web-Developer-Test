@@ -1,5 +1,7 @@
 // Scripts start here
 
+import "./../styles/app.scss";
+
 import "remove-focus-outline";
 
 import mockApi from "./mockApi";

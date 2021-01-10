@@ -2,6 +2,7 @@ const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
@@ -12,7 +13,7 @@ module.exports = (env, argv) => {
     mode: argv.mode,
     entry: [
       path.resolve(__dirname, "src", "scripts/app.js"),
-      path.resolve(__dirname, "src", "styles/app.scss"),
+      // path.resolve(__dirname, "src", "styles/app.scss"),
     ],
     output: {
       path: path.resolve(__dirname, "public"),
@@ -24,20 +25,6 @@ module.exports = (env, argv) => {
         {
           test: /\.js$/,
           use: "babel-loader",
-        },
-        {
-          test: /\.css$/,
-          use: [
-            {
-              loader: "style-loader",
-            },
-            {
-              loader: "css-loader",
-              options: {
-                sourceMap: true,
-              },
-            },
-          ],
         },
         {
           test: /\.scss$/,
@@ -53,14 +40,7 @@ module.exports = (env, argv) => {
               loader: "postcss-loader",
               options: {
                 postcssOptions: {
-                  plugins: [
-                    [
-                      "autoprefixer",
-                      {
-                        // Options
-                      },
-                    ],
-                  ],
+                  plugins: [["autoprefixer"]],
                 },
               },
             },
@@ -73,6 +53,18 @@ module.exports = (env, argv) => {
                   "src",
                   "styles/_abstract.scss"
                 ),
+              },
+            },
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            isDevMode ? "style-loader" : MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                sourceMap: true,
               },
             },
           ],
@@ -104,5 +96,9 @@ module.exports = (env, argv) => {
       }),
       new Dotenv({ systemvars: true }),
     ],
+    optimization: {
+      minimize: true,
+      minimizer: [`...`, new CssMinimizerPlugin()],
+    },
   };
 };

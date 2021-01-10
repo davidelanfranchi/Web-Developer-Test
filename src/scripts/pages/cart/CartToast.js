@@ -1,8 +1,6 @@
 import React from "react";
 
 import { ToastContainer, Slide, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.minimal.css";
-import "react-toastify/dist/ReactToastify.css";
 
 import "./CartToast.scss";
 
