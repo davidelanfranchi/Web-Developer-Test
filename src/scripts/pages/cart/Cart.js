@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import cloneDeep from "lodash.clonedeep";
 
 import "./Cart.scss";
 
