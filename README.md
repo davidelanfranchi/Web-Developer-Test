@@ -1,54 +1,56 @@
 # My Application
 
-A basic structure of a web application for web developers to develop upon and show their skills.
+Live: https://crazy-alpaca-web-developer-test.netlify.app/
 
-### Please DO NOT mention any Company or Individual names in code, when forking, committing, branching, developing or completing the exercise. 
-
-# Dependancies
-> node ^10.15.3
-
-> grunt-cli ```npm install -g grunt-cli```
-
-# Get Started
+## Get Started
 
 - Fork this repo
 - Clone your repo
 
-## Install dependancies
-```
-npm i
-``` 
+## Get Started
 
-## Build the app & watch
-```
-grunt dev
-```
+Install: `npm i`
 
-## Start application and server
-```
-npm start
-```
+Development: `npm run dev`
 
-## Creative assets  
-Look in ```./design-assets```
-
-### Fonts
-All free to download or include from [https://fonts.google.com/specimen/Libre+Franklin](https://fonts.google.com/specimen/Libre+Franklin) (Regular and ExtraLight)
+Build: `npm run build`
 
 ## Which Browsers/Devices or Virtualisation services did you check the application in?
 
+Latest versions of Google Chrome, Firefox, Safari and Microsoft Edge on desktop Mac.
+
+Latest version of Google Chrome, Firefox and Safari on iOS.
 
 ## Anything you want to tell us?
-- Assumptions?
-- Decisions?
-- What you used to develop and test?
+
+I know, you asked for MY code, but I decided to use React.js to challenge myself and learn something new. After all, you asked for square pegs...
+I could have used create-react-app, but I decided to use it without any ready-made toolchain, to understand better the framework.
+As the repository reminded a work on legacy code, I tryed to maintain the folder structe it seemed more realistic to man
 
 ## How would you improve this test?
-1.
-2.
-3.
+
+#### 1. Having the courage of changing idea
+
+The legacy scenario was an interesting hook, but if I could go back I'd leave the legacy codebase idea to stand on the shoulders of giants, use create-react-app and focus more on folders structure, a centralized state manager and maybe the built in support for PWA.
+
+#### 2. Getting visual
+
+I'd like the idea to add an effect to show the product image while hovering each row: images can really give a spin to a UI.
+
+#### 3. Testing the test
+
+Moreover, If I had a lot of time, I'd study something about code testing practices to answer to your requests.
 
 ### What did you like?
-1.
-2.
-3.
+
+#### 1. The hidden complexities of UI interaction
+
+I liked the fact that an apparently simple page presented a lot of small challenges, not immediately noticeable, that allowed me to test react.js. I wanted to test how difficult would have been to transfer Vue.js concepts to it and I think it was an ideal reduced case.
+
+#### 2. The blooming of UX opportunities
+
+I liked having to think about the UX of a very small part of an hypothetical user flow: it reminded me how many improvement we can think of.
+
+#### 3. The opportunity for gratitude
+
+I liked to work directly with webpack: it reminded me how powerful it is and... How lucky we are for all the open-source tools that save us the time to configure it!
