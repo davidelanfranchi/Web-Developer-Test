@@ -1,6 +1,6 @@
 # My Application
 
-Live: https://crazy-alpaca-web-developer-test.netlify.app/
+Live on Netlify: https://crazy-alpaca-web-developer-test.netlify.app/cart/
 
 ## Get Started
 
